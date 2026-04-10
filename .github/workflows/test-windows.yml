@@ -1,0 +1,32 @@
+name: Test on Windows
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-windows:
+    runs-on: windows-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Show environment
+        run: |
+          echo "OS: ${{ runner.os }}"
+          echo "Python version:"
+          python --version
+      
+      - name: Create test file
+        run: |
+          echo "Hello from Windows!" > test-result.txt
+          echo "Timestamp: $(Get-Date)" >> test-result.txt
+      
+      - name: Upload result
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-result
+          path: test-result.txt
