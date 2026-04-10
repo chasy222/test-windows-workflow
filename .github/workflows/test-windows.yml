@@ -2,9 +2,8 @@ name: Test on Windows
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches: [master, main]
+  workflow_dispatch:
 
 jobs:
   test-windows:
